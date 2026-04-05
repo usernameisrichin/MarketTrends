@@ -18,7 +18,7 @@
 # then "include" it in the main app in main.py.
 # ============================================================
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException, status
 from models.portfolio import PortfolioSummary
 from services.portfolio_service import get_portfolio
 
@@ -31,15 +31,27 @@ router = APIRouter(
 )
 
 
-@router.get("", response_model=PortfolioSummary)
+@router.get(
+    "",
+    response_model=PortfolioSummary,
+    status_code=status.HTTP_200_OK,
+    summary="Get portfolio summary",
+    response_description="Total value, daily change, and list of holdings",
+)
 def get_portfolio_handler():
     """
-    GET /portfolio
+    **GET /portfolio**
 
-    Returns the full portfolio summary including:
-    - Total value across all holdings
-    - Daily change percentage
-    - List of individual assets (stocks + Bitcoin)
+    Returns the full portfolio summary:
+    - `totalValue` — combined value of all holdings in INR
+    - `dailyChange` — today's change as a percentage string (e.g. "+2.3%")
+    - `assets` — list of stocks and crypto holdings
     """
-    # Delegate to the service layer — routes stay thin
-    return get_portfolio()
+    try:
+        return get_portfolio()
+    except Exception as e:
+        # If the service layer ever raises, return a clean 500 error
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Could not load portfolio data: {str(e)}",
+        )
