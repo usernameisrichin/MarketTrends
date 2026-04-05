@@ -223,7 +223,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             const SizedBox(height: 8),
 
             Text(
-              'Indian Stocks & Bitcoin Holdings',
+              '₹ Indian Stocks  •  ₿ Bitcoin',
               style: TextStyle(
                 fontSize: 15,
                 color: Theme.of(context).colorScheme.onPrimaryContainer.withOpacity(0.7),
@@ -310,7 +310,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           Icon(Icons.bar_chart, size: 80, color: Colors.grey.shade400),
           const SizedBox(height: 16),
           Text(
-            'Tap "Load Portfolio" to see your holdings',
+            'Tap "Load Portfolio" above\nto fetch your live holdings',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 16, color: Colors.grey.shade600),
           ),
