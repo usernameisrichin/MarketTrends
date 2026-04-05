@@ -1,0 +1,8 @@
+# Python packages needed to run this backend
+#
+# fastapi  → the web framework that handles our API routes
+# uvicorn  → the server that actually runs FastAPI
+# pydantic → used by FastAPI to validate and structure data (installed with fastapi)
+
+fastapi
+uvicorn
