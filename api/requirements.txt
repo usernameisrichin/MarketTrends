@@ -1,8 +1,25 @@
-# Python packages needed to run this backend
-#
-# fastapi  → the web framework that handles our API routes
-# uvicorn  → the server that actually runs FastAPI
-# pydantic → used by FastAPI to validate and structure data (installed with fastapi)
-
+# Core framework
 fastapi
 uvicorn
+
+# Data validation (used by FastAPI)
+pydantic
+
+# HTTP client — for calling CoinGecko and other external APIs
+httpx
+
+# Stock market data — fetches historical prices from Yahoo Finance
+yfinance
+
+# Date arithmetic — relativedelta for "3 months ago", "1 year ago" etc.
+python-dateutil
+
+# Timezone handling — for IST market hours detection
+pytz
+
+# RSS feed parser — for fetching news from Economic Times, CoinDesk etc.
+feedparser
+
+# Sentiment analysis — VADER (Valence Aware Dictionary for sEntiment Reasoning)
+# Works well for short financial headlines without ML training
+vaderSentiment
