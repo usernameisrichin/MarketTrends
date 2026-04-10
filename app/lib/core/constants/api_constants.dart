@@ -1,28 +1,35 @@
-// ============================================================
-// core/constants/api_constants.dart — App-wide Constants
-// ============================================================
+// core/constants/api_constants.dart — Single source of truth for all API URLs
 //
-// Why have a constants file?
-//   Instead of scattering URLs and magic strings throughout the code,
-//   we define them ONCE here. If the URL ever changes, you update
-//   one line — not 10 files.
-//
-// "core/" holds things that are truly app-wide:
-//   constants, theme, utilities, base classes, etc.
-// ============================================================
+// Change ONE line to point the entire app to a new environment:
+//   - Development:  localhost:8000
+//   - Android EMU:  10.0.2.2:8000
+//   - Production:   https://api.yourapp.com
 
 class ApiConstants {
-  // Private constructor — prevents anyone from doing `ApiConstants()`
-  // This class is meant to be used as a namespace, not instantiated.
   ApiConstants._();
 
-  /// Base URL of the FastAPI backend.
-  ///
-  /// Android emulator: use 10.0.2.2 (maps to your computer's localhost)
-  /// iOS simulator / Web: use localhost
-  /// Real device on same WiFi: use your computer's local IP, e.g. 192.168.1.5
+  // ── Base URL ───────────────────────────────────────────────
+  // iOS Simulator + Web : http://localhost:8000
+  // Android Emulator    : http://10.0.2.2:8000
+  // Real device (WiFi)  : http://192.168.x.x:8000
   static const String baseUrl = 'http://localhost:8000';
+  static const String wsBaseUrl = 'ws://localhost:8000';    // WebSocket base
 
-  /// Full URL for the portfolio endpoint
-  static const String portfolioEndpoint = '$baseUrl/portfolio';
+  // ── Portfolio ──────────────────────────────────────────────
+  static const String portfolio      = '$baseUrl/portfolio';
+  static const String familySummary  = '$baseUrl/portfolio/family-summary';
+  static String memberPortfolio(String id) => '$baseUrl/portfolio/member/$id';
+
+  // ── Tax Estimator ──────────────────────────────────────────
+  static const String taxCalculate   = '$baseUrl/tax/calculate';
+
+  // ── SIP Backtester ─────────────────────────────────────────
+  static const String sipBacktest    = '$baseUrl/sip/backtest';
+
+  // ── News Feed ──────────────────────────────────────────────
+  static const String news           = '$baseUrl/news';
+
+  // ── Real-Time ──────────────────────────────────────────────
+  static const String cryptoWs       = '$wsBaseUrl/realtime/crypto';
+  static String stockPrice(String symbol) => '$baseUrl/realtime/price/$symbol';
 }
