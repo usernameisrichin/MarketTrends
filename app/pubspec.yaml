@@ -1,50 +1,31 @@
-# pubspec.yaml — Flutter Project Configuration
-#
-# This file is like a "package.json" in Node.js or "requirements.txt" in Python.
-# It defines:
-#   - Your app's name and description
-#   - The Flutter/Dart SDK version it needs
-#   - External packages (dependencies) your app uses
-
 name: market_app
 description: A portfolio dashboard for Indian stocks and Bitcoin.
-
-# Prevents accidental publishing to pub.dev (Flutter's package registry)
 publish_to: 'none'
-
-# The version of your app. Format: major.minor.patch+buildNumber
-version: 1.0.0+1
+version: 2.0.0+1
 
 environment:
-  # The Dart SDK version this app needs (Flutter uses Dart)
   sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
-  # flutter: the core Flutter framework — REQUIRED for every Flutter app
   flutter:
     sdk: flutter
 
-  # http: lets us make network requests (call our FastAPI backend)
-  # Think of it like "fetch" in JavaScript
+  # HTTP networking — calls our FastAPI backend
   http: ^1.2.1
 
-  # cupertino_icons: provides iOS-style icons (the default icon set)
+  # Charts — line charts for SIP, pie/donut for sector heatmap
+  fl_chart: ^0.68.0
+
+  # Biometric authentication — fingerprint / Face ID for reveal balances
+  local_auth: ^2.2.0
+
+  # Icons
   cupertino_icons: ^1.0.6
 
 dev_dependencies:
-  # flutter_test: testing framework for Flutter
   flutter_test:
     sdk: flutter
-
-  # flutter_lints: provides code quality suggestions
   flutter_lints: ^3.0.0
 
 flutter:
-  # This section configures Flutter-specific settings
-
-  # uses-material-design: enables Material Design icons and widgets
   uses-material-design: true
-
-  # To add image assets later, you'd uncomment and list them here:
-  # assets:
-  #   - assets/images/logo.png
